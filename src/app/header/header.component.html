@@ -1,0 +1,29 @@
+<nav class="navbar navbar-dark bg-inverse shadow">
+  <a class="navbar-brand" [routerLink]="['']">
+    <img src="/images/logo.png" width="45" height="45" class="d-inline-block align-top" alt=""> Sydli
+  </a>
+  <ul class="nav navbar-nav" *ngIf="loggedin">
+    <li class="nav-item dropdown" (click)="toggle(dropdownMenu)" (mouseleave)="close(dropdownMenu)" #dropdownMenu>
+      <a class="nav-link dropdown-toggle" id="supportedContentDropdown" aria-haspopup="true" aria-expanded="false"><span class="badge" *ngIf="(newOrderCount>0?true:false)&&!isPharmacy">{{ newOrderCount }}</span>{{ userName | slice:0:15 }}</a>
+      <div class="dropdown-menu dropdown-menu-right shift-menu-up" aria-labelledby="supportedContentDropdown">
+        <a class="dropdown-item" [routerLink]="['userprofile']">Profile</a>
+        <a class="dropdown-item" [routerLink]="['myorders']" *ngIf="!isPharmacy">My Orders&nbsp;&nbsp;<span class="new-order" *ngIf="newOrderCount>0?true:false">{{ newOrderCount }}<small>&nbsp;NEW</small></span></a>
+        <a class="dropdown-item" [routerLink]="['pharmacy_orders']" *ngIf="isPharmacy">Orders</a>
+        <a class="dropdown-item" (click)="signout()">Logout</a>
+      </div>
+    </li>
+  </ul>
+  <a class="btn-outline-dark ripple" (click)="showLogin()" *ngIf="!(loggedin)">Log In</a>
+</nav>
+<nav class="navbar navbar-dark bg-inverse secondary toggle">
+  <div class="navbar-nav row-layout dark-color" (click)="toggleMenue(menu)">
+    <i class="material-icons">menu</i><span>{{ currentLink }}</span>
+  </div>
+</nav>
+<nav class="navbar navbar-dark bg-inverse secondary mytogglablemenu" #menu>
+  <div class="navbar-nav column-layout">
+    <a class="nav-item nav-link" [routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenue(menu)">{{ 'home' | translate }}</a>
+    <a class="nav-item nav-link" [routerLink]="['makeorder']" routerLinkActive="active" (click)="toggleMenue(menu)">{{ 'makeorder' | translate }}</a>
+    <a class="nav-item nav-link" [routerLink]="['contactus']" routerLinkActive="active" (click)="toggleMenue(menu)">{{ 'contactus' | translate }}</a>
+  </div>
+</nav>

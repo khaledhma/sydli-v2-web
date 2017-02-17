@@ -1,0 +1,39 @@
+{
+  "rules": {
+    "medicineInfo": {
+      ".read": true,
+      ".write": true
+    },
+    "medicineBarcode": {
+      ".read": true,
+      ".write": true
+    },
+    "medicineName": {
+      ".read": true,
+      ".write": true
+    },
+    "medicineNameArabic": {
+      ".read": true,
+      ".write": true
+    },
+    "orders": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": ["orderSenderId", "orderStatus", "orderAcceptedBy"]
+    },
+    "users": {
+      "$uid": {
+        ".write": true,
+        ".read": true
+      }
+    },
+    "sellbuy": {
+      ".read": true,
+      ".write": true
+    },
+    "online": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}

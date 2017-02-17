@@ -1,0 +1,50 @@
+<div class="backdrop-small" *ngIf="sending">
+  <h5>Sending Order...</h5>
+  <div class="sk-fading-circle spinner">
+    <div class="sk-circle1 sk-circle"></div>
+    <div class="sk-circle2 sk-circle"></div>
+    <div class="sk-circle3 sk-circle"></div>
+    <div class="sk-circle4 sk-circle"></div>
+    <div class="sk-circle5 sk-circle"></div>
+    <div class="sk-circle6 sk-circle"></div>
+    <div class="sk-circle7 sk-circle"></div>
+    <div class="sk-circle8 sk-circle"></div>
+    <div class="sk-circle9 sk-circle"></div>
+    <div class="sk-circle10 sk-circle"></div>
+    <div class="sk-circle11 sk-circle"></div>
+    <div class="sk-circle12 sk-circle"></div>
+  </div>
+</div>
+<div class="col-lg-12">
+  <div class="card" *ngIf="shoppingList.length==0">
+    <h4>No items in the shopping list.....</h4>
+  </div>
+  <div class="list-group card" [hidden]="shoppingList.length==0">
+    <a class="list-group-item shopping-list-header">
+      <h5>Your Order Items</h5>
+      <h5><small>Total</small> {{getTotal() | number:'1.2-2'}} LE</h5>
+    </a>
+    <a class="list-group-item shopping-list-item" *ngFor="let item of shoppingList">
+      <div class="shopping-list-item-control">
+        <div class="shopping-list-item-info">
+          <h5>{{item.medecineName}} <small>(Qty. {{ item.medecineQty }})</small></h5>
+          <small>price: {{item.medecinePrice}}LE</small>
+        </div>
+      </div>
+      <div class="shopping-list-item-total">
+        <h5><small>Sub-Total</small> {{item.medecinePrice | multiply:item.medecineQty | number:'1.2-2'}} LE</h5>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="container">
+  <div class="col-lg-12">
+    <hr>
+  </div>
+</div>
+<sy-address [uid]="loggedInUser['uid']" (selectedAddressEmitter)="selectedAddress($event)"></sy-address>
+<div class="container">
+  <div class="col-lg-12 card send-order">
+    <button class="btn-solid-accent ripple" (click)="sendOrder()" [disabled]="disbaleSend">Send Order</button>
+  </div>
+</div>

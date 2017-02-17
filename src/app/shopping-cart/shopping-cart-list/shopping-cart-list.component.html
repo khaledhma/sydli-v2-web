@@ -1,0 +1,28 @@
+<div class="col-lg-8 offset-lg-2">
+  <div class="card" *ngIf="shoppingList.length==0">
+    <h4>No items in the shopping list.....</h4>
+  </div>
+  <div class="list-group card" [hidden]="shoppingList.length==0">
+    <a class="list-group-item shopping-list-header">
+      <button class="btn-solid-accent ripple" (click)="checkout()">CHECK OUT...</button>
+      <h5><small>Total</small> {{getTotal() | number:'1.2-2'}} LE</h5>
+    </a>
+    <a class="list-group-item shopping-list-item" *ngFor="let item of shoppingList">
+      <div class="shopping-list-item-control">
+        <a class="btn btn-delete" (click)="removeItem(item)">X</a>
+        <div class="shopping-list-item-info">
+          <h5>{{item.medecineName}}</h5>
+          <small>price: {{item.medecinePrice}}LE</small>
+        </div>
+        <form class="form-inline shopping-list-edit-form">
+          <a class="btn-solid-accent" (click)="decrement(item)" [ngClass]="{'disabled':item.medecineQty==0?true:false}">-</a>
+          <input type="text" class="form-control=" name="qty" id="qty" placeholder="2" [(ngModel)]="item.medecineQty">
+          <a class="btn-solid-accent" (click)="increment(item)">+</a>
+        </form>
+      </div>
+      <div class="shopping-list-item-total">
+        <h5><small>Sub-Total</small> {{item.medecinePrice | multiply:item.medecineQty | number:'1.2-2'}} LE</h5>
+      </div>
+    </a>
+  </div>
+</div>

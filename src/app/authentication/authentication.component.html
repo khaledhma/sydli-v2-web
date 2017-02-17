@@ -1,0 +1,22 @@
+<div class="modal full-height" [ngClass]="{'open':isOpen , 'close':!isOpen}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'active':showLogin}" (click)="show('login')">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'active':!showLogin}" (click)="show('signup')">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+      <sy-login *ngIf="showLogin"></sy-login>
+      <sy-signup *ngIf="!showLogin" (switchPanel)="switchToLogin()"></sy-signup>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<div class="modal-backdrop in full-height" [ngClass]="{'open':isOpen , 'close':!isOpen}"></div>

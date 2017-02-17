@@ -1,0 +1,81 @@
+<div class="col-lg-12">
+  <div class="loading-orders card" *ngIf="loading">
+    <h4>Loading Your orders</h4>
+    <h5>Please Wait...</h5>
+    <div class="sk-fading-circle spinner">
+      <div class="sk-circle1 sk-circle"></div>
+      <div class="sk-circle2 sk-circle"></div>
+      <div class="sk-circle3 sk-circle"></div>
+      <div class="sk-circle4 sk-circle"></div>
+      <div class="sk-circle5 sk-circle"></div>
+      <div class="sk-circle6 sk-circle"></div>
+      <div class="sk-circle7 sk-circle"></div>
+      <div class="sk-circle8 sk-circle"></div>
+      <div class="sk-circle9 sk-circle"></div>
+      <div class="sk-circle10 sk-circle"></div>
+      <div class="sk-circle11 sk-circle"></div>
+      <div class="sk-circle12 sk-circle"></div>
+    </div>
+  </div>
+  <div class="loading-orders card" *ngIf="!loading&&(orderList.length==0?true:false)">
+    <h4>You Have No Orders...</h4>
+  </div>
+  <div class="orders-container" *ngIf="!loading&&(orderList.length>0?true:false)">
+    <div class="card order-card" *ngFor="let order of orderList; let i = index">
+      <ul class="list-group order-content-list">
+        <li class="list-group-item header" [ngClass]="{'pending': (order.orderStatus=='pending')?true:false,'accepted': (order.orderStatus=='accepted')?true:false}">
+          <i class="material-icons" *ngIf="(order.orderStatus=='accepted')?true:false">done</i>
+          <div class="sk-fading-circle spinner" *ngIf="(order.orderStatus=='pending')?true:false">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+          </div>
+          {{ order.orderStatus | uppercase }}
+          <h5><small>Total</small>&nbsp;&nbsp;{{ order.orderTotal | number:'1.2-2' }}&nbsp;LE</h5>
+        </li>
+        <li class="list-group-item">
+          Sent At:&nbsp;&nbsp; {{ order.orderTime | date:'MMM d, y h:m a'}}
+        </li>
+        <li class="list-group-item">
+          Delivery To:&nbsp;&nbsp; {{ order.senderAddress | formatAddress }}
+        </li>
+        <li class="list-group-item" *ngIf="order.orderPhotoUrl!=''?true:false">
+          Attachement:&nbsp;&nbsp; <a [href]="order.orderPhotoUrl" target="_blank">Show document</a>
+        </li>
+        <li class="list-group-item">
+          Accepted By:&nbsp;&nbsp; {{ order.orderAcceptedBy!='none'?order.orderAcceptedBy:'--------'}}
+        </li>
+        <li class="list-group-item show-more ripple" (click)="showDetails(collapsable,i)">
+          <span *ngIf="colapse[i]">SHOW DETAILS&nbsp;&nbsp;</span>
+          <span *ngIf="!colapse[i]">HIDE DETAILS&nbsp;&nbsp;</span>
+          <i class="material-icons" *ngIf="colapse[i]">arrow_drop_down</i>
+          <i class="material-icons" *ngIf="!colapse[i]">arrow_drop_up</i>
+        </li>
+        <li class="list-group-item details-list">
+          <div class="list-group collapse" #collapsable>
+            <li class="list-group-item shopping-list-item" *ngFor="let item of order.orderList">
+              <div class="shopping-list-item-control">
+                <div class="shopping-list-item-info">
+                  <h5>{{item.medecineName}} <small>(Qty. {{ item.medecineQty }})</small></h5>
+                  <small>price: {{item.medecinePrice}}LE</small>
+                </div>
+              </div>
+              <div class="shopping-list-item-total">
+                <h5><small>Sub-Total</small> {{item.medecinePrice | multiply:item.medecineQty | number:'1.2-2'}} LE</h5>
+              </div>
+            </li>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

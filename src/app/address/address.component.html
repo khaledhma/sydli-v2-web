@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <ul class="list-group saved-addresses-list">
+        <li class="list-group-item header">
+          <i class="material-icons">local_post_office</i>
+          &nbsp;&nbsp;Saved Addresses
+        </li>
+        <li class="list-group-item adress-list-item" *ngFor="let address of addresses; let i=index" (click)="selectAddress(i)" [ngClass]="{'selected':(i==selectedAddress)?true:false}">
+          <h5><i class="material-icons">done</i>{{ address.name }}<button class="btn-solid-accent btn-small" (click)="deleteAddress(i)">Delete</button></h5>
+          <h6>{{ address | formatAddress }}</h6>
+        </li>
+        <li class="list-group-item" *ngIf="!isAddress">
+          <h5 *ngIf="!loading">No Saved Adresses. Please add one</h5>
+          <h5 *ngIf="loading">&nbsp;</h5>
+        </li>
+        <li class="list-group-item adress-list-item" *ngIf="!isAddAddress">
+          <button class="btn-solid-accent ripple" (click)="addNewAddress()">Add New Address</button>
+        </li>
+        <div class="backdrop-small" *ngIf="loading">
+          <h5>Loading...</h5>
+          <div class="sk-fading-circle spinner">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <div class="col-lg-6" *ngIf="isAddAddress">
+      <ul class="list-group new-address-list">
+        <li class="list-group-item header"><i class="material-icons">fiber_new</i>&nbsp;&nbsp;Add New Address</li>
+        <li class="list-group-item add-address">
+          <button class="btn-solid-accent ripple" (click)="findCurrentLocation()"><i class="material-icons">my_location</i>Find My Current Location</button>
+        </li>
+        <li class="list-group-item add-address">
+          <sebm-google-map [latitude]="lat" [longitude]="lng" [mapDraggable]="false" [zoom]="15" [disableDefaultUI]="false">
+            <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerLocation($event)">
+              <sebm-google-map-info-window [disableAutoPan]="true" [isOpen]="openInfoWindow">
+                <strong>Move this marker to an accurate position</strong>
+              </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+          </sebm-google-map>
+          <div class="backdrop-small" *ngIf="mapLoading">
+            <h5>Finding Location...</h5>
+            <div class="sk-fading-circle spinner">
+              <div class="sk-circle1 sk-circle"></div>
+              <div class="sk-circle2 sk-circle"></div>
+              <div class="sk-circle3 sk-circle"></div>
+              <div class="sk-circle4 sk-circle"></div>
+              <div class="sk-circle5 sk-circle"></div>
+              <div class="sk-circle6 sk-circle"></div>
+              <div class="sk-circle7 sk-circle"></div>
+              <div class="sk-circle8 sk-circle"></div>
+              <div class="sk-circle9 sk-circle"></div>
+              <div class="sk-circle10 sk-circle"></div>
+              <div class="sk-circle11 sk-circle"></div>
+              <div class="sk-circle12 sk-circle"></div>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item add-address">
+          <button class="btn-solid-accent ripple" (click)="getAddressFromCoords()"><i class="material-icons">location_city</i>Get Address</button>
+          <small>*You need to fill in the missing data in the following form.</small>
+        </li>
+        <li class="list-group-item add-address">
+          <form #newAddressForm="ngForm">
+            <div class="form-group">
+              <label for="name">Address Name (Such as Home, Work,...etc)</label>
+              <input type="text" class="form-control" id="name" ngModel name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="apartment">Apartment</label>
+              <input type="text" class="form-control" id="apartment" ngModel name="apartment" required>
+            </div>
+            <div class="form-group">
+              <label for="building">Building</label>
+              <input type="text" class="form-control" id="building" ngModel name="building" required>
+            </div>
+            <div class="form-group">
+              <label for="street">Street</label>
+              <input type="text" class="form-control" id="street" ngModel name="street" required>
+            </div>
+            <div class="form-group">
+              <label for="area">Area</label>
+              <input type="text" class="form-control" id="area" ngModel name="area" required>
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" class="form-control" id="city" ngModel name="city" required>
+            </div>
+            <div class="form-group">
+              <button class="btn-solid-accent ripple" (click)="saveAddress()" [disabled]="newAddressForm.invalid">Save</button>
+            </div>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

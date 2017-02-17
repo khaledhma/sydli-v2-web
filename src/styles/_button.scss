@@ -1,0 +1,99 @@
+@mixin btn-basic {
+  transition: 0.3s;
+  color: #fff !important;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid $color-accent;
+}
+
+.btn-outline-dark {
+  @include btn-basic;
+  background-color: transperant;
+  // box-shadow: 0 3px 4px 0 rgba(255,255,255,0.2);
+
+  &:hover {
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,0.4);
+    transform: translateZ(1px);
+  }
+}
+
+.btn-outline-light {
+  @include btn-basic;
+  color: $color-accent !important;
+  background-color: transperant;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.2);
+
+  &:hover {
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.4);
+    transform: translateZ(1px);
+  }
+}
+
+.btn-solid-accent {
+  @include btn-basic;
+  background-color: $color-accent;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.2);
+
+  &:hover {
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.4);
+    transform: translateZ(1px);
+  }
+}
+
+.btn-solid-primary {
+  @include btn-basic;
+  background-color: $color-primary;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.2);
+
+  &:hover {
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.4);
+    transform: translateZ(1px);
+  }
+}
+
+.btn-solid-accent:disabled {
+  background-color: lighten($color-accent, 0.5);
+  border-color: lighten($color-accent, 0.5);
+  cursor: not-allowed;
+  opacity: 0.65;
+
+  &:hover {
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    transform: none;
+  }
+}
+
+.btn-solid-primary:disabled {
+  background-color: lighten($color-primary, 0.5);
+  border-color: lighten($color-primary, 0.5);
+  cursor: not-allowed;
+  opacity: 0.65;
+
+  &:hover {
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    transform: none;
+  }
+}
+
+.btn-small {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.775rem;
+  border-radius: 0.2rem;
+}

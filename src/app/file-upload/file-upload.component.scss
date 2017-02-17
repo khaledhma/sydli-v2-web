@@ -1,0 +1,126 @@
+@import '../../styles/color';
+
+.file-uploader {
+  max-width: 300px;
+  width: 100%;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+  max-width: 200px;
+  font-size: 1rem;
+  /* 20px */
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.625rem 1.25rem;
+  /* 10px 20px */
+}
+
+.inputfile.has-focus + label,
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+  /* pointer-events: none; */
+  /* in case of FastClick lib use */
+}
+
+.inputfile + label svg {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  fill: currentColor;
+  margin-top: -0.25em;
+  /* 4px */
+  margin-right: 0.25em;
+  /* 4px */
+}
+/* style 1 */
+.inputfile-1 + label {
+  color: #fff;
+  background-color: $color-primary;
+}
+
+.inputfile-1 + label:hover,
+.inputfile-1.has-focus + label,
+.inputfile-1:focus + label {
+  background-color: lighten($color-primary,10);
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+}
+
+.progress {
+  display: flex;
+  width: 100%;
+
+  .progress-container {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: lighten($color-accent, 25%);
+    width: 100%;
+    border-radius: 5px;
+
+    .progress-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background-color: $color-accent;
+      height: 80%;
+      width: 80%;
+      border-radius: 5px;
+
+      .progress-text {
+        position: absolute;
+        // left: 50%;
+        color: #fff;
+        font-size: 0.75rem;
+      }
+    }
+  }
+}
+
+.img-thumb {
+  margin: 10px auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: lighten($color-primary , 70%);
+  position: relative;
+
+  img {
+    width: 80px;
+    height: auto;
+    max-height: 100px;
+  }
+
+  .delete-img-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+  }
+}

@@ -1,0 +1,24 @@
+<div class="medecine-details card">
+  <div class="goback hidden-sm-up" (click)="back()">
+    <i class="material-icons">backspace</i>&nbsp;Go Back
+  </div>
+
+  <div class="medecine-details-image">
+    <img class="card-img-left img-fluid" src="http://lorempixel.com/650/350/">
+    <div class="image-overlay">
+      <h4>{{medecineDetails?.name_med}}</h4>
+      <h4>{{medecineDetails?.price}} LE</h4>
+    </div>
+    <button class="btn-solid-accent ripple" [disabled]="!loggedin" (click)="addItem()">Order</button>
+  </div>
+  <div class="medecine-details-content">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">abbreviation:{{medecineDetails?.abbreviation}}</li>
+      <li class="list-group-item">dos_eng:{{medecineDetails?.dos_eng}}</li>
+      <li class="list-group-item">form:{{medecineDetails?.form}}</li>
+      <li class="list-group-item">item_no:{{medecineDetails?.item_no}}</li>
+      <li class="list-group-item">name:{{medecineDetails?.name}}</li>
+      <li class="list-group-item">name_med:{{medecineDetails?.name_med}}</li>
+    </ul>
+  </div>
+</div>
