@@ -1,0 +1,10 @@
+.cart-widget {
+  z-index: $z-fab;
+  position: fixed!important;
+  top: 85vh;
+  right: 0;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

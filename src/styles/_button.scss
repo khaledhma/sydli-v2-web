@@ -1,99 +1,138 @@
-@mixin btn-basic {
-  transition: 0.3s;
-  color: #fff !important;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 400;
-  line-height: 1.25;
-  text-align: center;
+.btn {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
   text-decoration: none;
-  white-space: nowrap;
-  vertical-align: middle;
+  color: $primary-inverse-text-color;
+  background-color: $accent-color;
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: 0.2s ease-out;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border-radius: 0.25rem;
-  border: 1px solid $color-accent;
-}
-
-.btn-outline-dark {
-  @include btn-basic;
-  background-color: transperant;
-  // box-shadow: 0 3px 4px 0 rgba(255,255,255,0.2);
+  outline: 0;
+  border: none;
+  border-radius: 2px;
+  display: inline-block;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 8px;
+  margin: 0 8px;
+  min-width: 80px;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 
   &:hover {
-    box-shadow: 0 3px 4px 0 rgba(0,0,0,0.4);
-    transform: translateZ(1px);
+    background-color: lighten($accent-color,10);
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+  }
+
+  &:focus {
+    background-color: darken($accent-color,10);
   }
 }
 
-.btn-outline-light {
-  @include btn-basic;
-  color: $color-accent !important;
-  background-color: transperant;
-  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.2);
+.btn-flat {
+  font-size: 14px;
+  box-shadow: none;
+  background-color: transparent;
+  color: $secondary-text-color;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: 0.2s ease-out;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  border-radius: 2px;
+  display: inline-block;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 8px;
+  margin: 0 8px;
+  min-width: 80px;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    background-color: rgba(0,0,0,0.2);
+  }
 
   &:hover {
-    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.4);
-    transform: translateZ(1px);
+    background-color: rgba(0,0,0,0.1);
+    box-shadow: none;
+  }
+
+  &:focus {
+    background-color: rgba(0,0,0,0.1);
+    box-shadow: none;
   }
 }
 
-.btn-solid-accent {
-  @include btn-basic;
-  background-color: $color-accent;
-  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.2);
+.btn-floating {
+  font-size: 14px;
+  width: 56px;
+  height: 56px;
+  line-height: 54px;
+  display: inline-block;
+  color: $primary-inverse-text-color;
+  position: relative;
+  overflow: hidden;
+  z-index: $z-fab;
+  padding: 0;
+  background-color: $accent-color;
+  border-radius: 50%;
+  transition: 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: 0.3s cubic-bezier(0.53, 0.01, 0.36, 1.63);
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 
   &:hover {
-    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.4);
-    transform: translateZ(1px);
+    background-color: lighten($accent-color,10);
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+  }
+
+  &:focus {
+    background-color: darken($accent-color,10);
   }
 }
 
-.btn-solid-primary {
-  @include btn-basic;
-  background-color: $color-primary;
-  box-shadow: 0 3px 4px 0 rgba(0,0,0,0.2);
-
-  &:hover {
-    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.4);
-    transform: translateZ(1px);
-  }
+.btn-floating.show {
+  transform-origin: center center 0;
+  transform: scale(1);
+  opacity: 1;
 }
 
-.btn-solid-accent:disabled {
-  background-color: lighten($color-accent, 0.5);
-  border-color: lighten($color-accent, 0.5);
-  cursor: not-allowed;
-  opacity: 0.65;
-
-  &:hover {
-    box-shadow: 0 0 0 0 rgba(0,0,0,0);
-    transform: none;
-  }
+.btn-floating.hide {
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)!important;
+  transform-origin: center center 0;
+  transform: scale(0);
+  opacity: 0;
 }
 
-.btn-solid-primary:disabled {
-  background-color: lighten($color-primary, 0.5);
-  border-color: lighten($color-primary, 0.5);
-  cursor: not-allowed;
-  opacity: 0.65;
-
-  &:hover {
-    box-shadow: 0 0 0 0 rgba(0,0,0,0);
-    transform: none;
-  }
-}
-
-.btn-small {
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 0.2rem 0.4rem;
-  font-size: 0.775rem;
-  border-radius: 0.2rem;
+.btn-flat.disabled,
+.btn-flat:disabled,
+.btn-flat[disabled],
+.btn-floating.disabled,
+.btn-floating:disabled,
+.btn-floating[disabled],
+.btn.disabled,
+.btn:disabled,
+.btn[disabled] {
+  pointer-events: none;
+  background-color: #DFDFDF !important;
+  box-shadow: none;
+  color: #9F9F9F !important;
+  cursor: default;
 }

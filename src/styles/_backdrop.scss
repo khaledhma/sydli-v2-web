@@ -1,0 +1,17 @@
+.backdrop {
+  z-index: $z-backdrop;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: $secondary-text-color;
+  display: flex;
+  flex-flow: column;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary-color-dark;
+  opacity: 0.7;
+}

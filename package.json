@@ -9,8 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "sw": "sw-precache --root=dist --config=sw-precache-config.js",
-    "deploy": "(ng build --prod --aot) && (npm run sw) && (firebase deploy)"
+    "sw": "sw-precache --root=public --config=sw-precache-config.js",
+    "deploy": "(ng build --prod --aot) && (npm run sw) && (firebase deploy)",
+    "static-serve": "cd public && live-server --port=4200 --host=localhost --entry-file=/index.html"
   },
   "private": true,
   "dependencies": {

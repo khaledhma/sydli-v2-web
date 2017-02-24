@@ -1,10 +1,7 @@
-<sy-select-lang></sy-select-lang>
-<sy-header></sy-header>
-<sy-offline-indicator [show]="isOffline"></sy-offline-indicator>
-<div class="container">
-  <hr>
+<div class="wrapper" [ngStyle]="{'direction': direction}">
   <router-outlet></router-outlet>
+  <sy-select-lang></sy-select-lang>
+  <sy-dialog>
+    <sy-login></sy-login>
+  </sy-dialog>
 </div>
-<sy-footer></sy-footer>
-<sy-authentication></sy-authentication>
-<sy-shopping-cart-widget></sy-shopping-cart-widget>

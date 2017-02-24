@@ -13,8 +13,8 @@
   }
 
   .header {
-    background-color: $color-primary;
-    border-color: $color-primary;
+    background-color: $primary-color-dark;
+    border-color: $primary-color-dark;
     color: #fff;
   }
 }
@@ -31,7 +31,7 @@
 
 .selected {
   z-index: 100;
-  background-color: lighten($color-accent,8);
+  background-color: lighten($accent-color,8);
   color: #fff;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
   i {

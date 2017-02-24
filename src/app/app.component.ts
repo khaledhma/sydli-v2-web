@@ -5,6 +5,7 @@ import { OfflineService } from './offline.service';
 import { AuthenticationService } from './authentication.service';
 import { User } from './user';
 import { UserService } from './user.service';
+import { LangService } from './lang.service';
 
 @Component({
   selector: 'sy-root',
@@ -17,8 +18,12 @@ export class AppComponent implements OnInit {
   private loggedin: boolean = false;
   private subscription: Subscription;
   private uid: string = "";
+  private direction: string = 'ltr';
 
-  constructor (private offlineService: OfflineService, private authService: AuthenticationService, private userService: UserService) {}
+  constructor(private offlineService: OfflineService,
+    private authService: AuthenticationService,
+    private userService: UserService,
+    private langService: LangService) { }
 
   ngOnInit() {
     this.subscription = this.authService.isAuthenticated().subscribe(
@@ -39,6 +44,17 @@ export class AppComponent implements OnInit {
       (status) => {
         this.isOffline = !status.$value;
         console.log(!status.$value);
+      }
+    )
+
+    this.langService.langSelected.subscribe(
+      (lang) => {
+        if(lang === 'en') {
+          this.direction = 'ltr';
+        }
+        if(lang === 'ar') {
+          this.direction = 'rtl';
+        }
       }
     )
   }

@@ -9,6 +9,7 @@ import 'rxjs/add/operator/mergeMap';
 import { OrderService } from '../order.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { DialogService } from '../dialog.service';
 
 @Component({
   selector: 'sy-header',
@@ -28,7 +29,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private isPharmacy: boolean = false;
   private currentLink: string = "Home";
 
-  constructor(private renderer: Renderer, private authService: AuthenticationService, private orderService: OrderService, private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private renderer: Renderer,
+    private authService: AuthenticationService,
+    private orderService: OrderService,
+    private userService: UserService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private dialogService: DialogService) { }
 
   ngOnInit() {
     this.subscription = this.authService.isAuthenticated().subscribe(
@@ -66,35 +73,35 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .mergeMap(route => route.data)
       .subscribe((event) => this.currentLink = event['title']);
 
-}
+  }
 
-ngOnDestroy() {
-  this.subscription.unsubscribe();
-  this.urlSub.unsubscribe();
-}
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.urlSub.unsubscribe();
+  }
 
-toggle(elementRef: ElementRef) {
-  this.isOpen = !this.isOpen;
-  this.renderer.setElementClass(elementRef, 'open', this.isOpen);
-}
+  open(elementRef: ElementRef) {
+    this.renderer.setElementClass(elementRef, 'open', true);
+    this.renderer.setElementClass(elementRef, 'close', false);
+  }
 
-toggleMenue(elementRef: ElementRef) {
-  this.isMenueOpen = !this.isMenueOpen;
-  this.renderer.setElementClass(elementRef, 'open', this.isMenueOpen);
-}
+  close(e: Event, elementRef: ElementRef) {
+    this.renderer.setElementClass(elementRef, 'open', false);
+    this.renderer.setElementClass(elementRef, 'close', true);
+  }
 
-close(elementRef: ElementRef) {
-  this.renderer.setElementClass(elementRef, 'open', false);
-  this.isOpen = false;
-}
+  toggleMenue(elementRef: ElementRef) {
+    this.isMenueOpen = !this.isMenueOpen;
+    this.renderer.setElementClass(elementRef, 'open', this.isMenueOpen);
+  }
 
-showLogin() {
-  this.authService.showLogin(true);
-}
+  showLogin() {
+    this.dialogService.openDialog();
+  }
 
-signout() {
-  this.userService.removeUserProfileFromLocalStorage();
-  this.authService.signout();
-}
+  signout() {
+    this.userService.removeUserProfileFromLocalStorage();
+    this.authService.signout();
+  }
 
 }

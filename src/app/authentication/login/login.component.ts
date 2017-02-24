@@ -5,6 +5,7 @@ import 'rxjs/add/operator/take';
 
 
 import { AuthenticationService } from '../../authentication.service';
+import { DialogService } from '../../dialog.service';
 
 @Component({
   selector: 'sy-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private errorMessage: string = "";
   private isError: boolean = false;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService, private dialogService: DialogService) { }
 
   ngOnInit() {
   }
@@ -49,8 +50,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.showSpinner = false;
     this.errorMessage = "";
     this.isError = false;
-    this.authService.showLogin(false);
     this.reset(form);
+    this.dialogService.closeDialog();
   }
 
   reset(form: NgForm) {

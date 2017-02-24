@@ -11,7 +11,7 @@ import { UserService } from '../../user.service';
 @Component({
   selector: 'sy-shopping-cart-widget',
   templateUrl: './shopping-cart-widget.component.html',
-  styleUrls: ['./shopping-cart-widget.component.scss']
+  styles: []
 })
 export class ShoppingCartWidgetComponent implements OnInit {
 

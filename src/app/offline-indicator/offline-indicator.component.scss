@@ -13,7 +13,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: $color-primary;
+  background-color: $primary-color-dark;
   opacity: 0.7;
   border-radius: 0px 0px 0px 0px;
 }
@@ -29,7 +29,7 @@
 }
 
 .connected {
-  background-color: $color-accent;
+  background-color: $accent-color;
 }
 
 .disconnected {

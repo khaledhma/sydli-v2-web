@@ -53,13 +53,13 @@
 /* style 1 */
 .inputfile-1 + label {
   color: #fff;
-  background-color: $color-primary;
+  background-color: $primary-color-dark;
 }
 
 .inputfile-1 + label:hover,
 .inputfile-1.has-focus + label,
 .inputfile-1:focus + label {
-  background-color: lighten($color-primary,10);
+  background-color: lighten($primary-color-dark,10);
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
 }
 
@@ -73,7 +73,7 @@
     flex-flow: row;
     justify-content: flex-start;
     align-items: center;
-    background-color: lighten($color-accent, 25%);
+    background-color: lighten($accent-color, 25%);
     width: 100%;
     border-radius: 5px;
 
@@ -82,7 +82,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      background-color: $color-accent;
+      background-color: $accent-color;
       height: 80%;
       width: 80%;
       border-radius: 5px;
@@ -107,7 +107,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: lighten($color-primary , 70%);
+  background-color: lighten($primary-color-dark , 70%);
   position: relative;
 
   img {

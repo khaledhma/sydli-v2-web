@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from 'ng2-translate';
 
+import { LangService } from '../lang.service';
+
+
 @Component({
   selector: 'sy-select-lang',
   templateUrl: './select-lang.component.html',
-  styleUrls: ['./select-lang.component.scss']
+  styles: []
 })
 export class SelectLangComponent implements OnInit {
 
@@ -12,7 +15,7 @@ export class SelectLangComponent implements OnInit {
   private otherLang: string;
   private displayLangName: string;
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private langService: LangService) {
 
     translate.addLangs(["en", "ar"]);
     translate.setDefaultLang('en');
@@ -23,6 +26,7 @@ export class SelectLangComponent implements OnInit {
       this.currentLang = "en";
       this.otherLang = "ar";
       this.displayLangName = "عربى";
+      this.langService.changeLang("en");
     }
 
     if (browserLang.startsWith("ar")) {
@@ -30,6 +34,7 @@ export class SelectLangComponent implements OnInit {
       this.currentLang = "ar";
       this.otherLang = "en";
       this.displayLangName = "English";
+      this.langService.changeLang("ar");
     }
 
   }
@@ -44,11 +49,13 @@ export class SelectLangComponent implements OnInit {
       this.currentLang = "ar";
       this.otherLang = "en";
       this.displayLangName = "English";
+      this.langService.changeLang("ar");
     } else {
       this.translate.use("en");
       this.currentLang = "en";
       this.otherLang = "ar";
       this.displayLangName = "عربى";
+      this.langService.changeLang("en");
     }
   }
 

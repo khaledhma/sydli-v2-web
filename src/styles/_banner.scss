@@ -1,0 +1,50 @@
+.banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 500px;
+  overflow-y: hidden;
+
+  .banner-container {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    position: absolute;
+    text-align: center;
+    background: url("/images/overaly_dark.png") repeat;
+  }
+
+  img {
+    transform-origin:top left;
+    margin: 0px;
+    width: 100%;
+    height: auto;
+  }
+  @media only screen and (min-width : 250px) and (max-width : 480px) {
+    .lg,
+    .md {
+      display: none;
+    }
+    .sm {
+      display: block;
+    }
+  }
+  @media only screen and (min-width : 481px) and (max-width : 992px) {
+    .lg,
+    .sm {
+      display: none;
+    }
+    .md {
+      display: block;
+    }
+  }
+  @media only screen and (min-width : 993px) {
+    .md,
+    .sm {
+      display: none;
+    }
+    .lg {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,4 @@
+<sy-backdrop [showBackDrop]="false" (click)="close()"></sy-backdrop>
+<div class="dialog" [ngClass]="{'open':show,'close':!show}">
+  <ng-content></ng-content>
+</div>

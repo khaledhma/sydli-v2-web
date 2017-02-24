@@ -6,6 +6,7 @@ import { AngularFireModule} from 'angularfire2/index';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from 'ng2-translate';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { ClickOutsideModule } from 'ng-click-outside'
 
 import { AppComponent } from './app.component';
 import { MedecineService } from './medecine.service';
@@ -14,7 +15,6 @@ import { HeaderComponent } from './header/header.component';
 import { MedecineInfoComponent } from './medecine-info/medecine-info.component';
 import { SearchComponent } from './medecine-info/search/search.component';
 import { DetailsComponent } from './medecine-info/details/details.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
 import { AuthenticationService } from './authentication.service';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
@@ -36,12 +36,22 @@ import { OfflineIndicatorComponent } from './offline-indicator/offline-indicator
 import { MakeOrderComponent } from './make-order/make-order.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { OfflineService } from './offline.service';
-import { AdsComponent } from './ads/ads.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileUploadService } from './file-upload/file-upload.service';
 import { SelectLangComponent } from './select-lang/select-lang.component';
 import { AddressComponent } from './address/address.component';
 import { AddressService } from './address/address.service';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { BannerComponent } from './banner/banner.component';
+import { DownloadComponent } from './download/download.component';
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+import { PharmacyComponent } from './pharmacy/pharmacy.component';
+import { LangService } from './lang.service';
+import { BackdropComponent } from './backdrop/backdrop.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { DialogService } from './dialog.service';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +60,6 @@ import { AddressService } from './address/address.service';
     MedecineInfoComponent,
     SearchComponent,
     DetailsComponent,
-    AuthenticationComponent,
     LoginComponent,
     SignupComponent,
     MyOrdersComponent,
@@ -65,10 +74,17 @@ import { AddressService } from './address/address.service';
     OfflineIndicatorComponent,
     MakeOrderComponent,
     ContactusComponent,
-    AdsComponent,
     FileUploadComponent,
     SelectLangComponent,
-    AddressComponent
+    AddressComponent,
+    SpinnerComponent,
+    BannerComponent,
+    DownloadComponent,
+    HomeComponent,
+    UserComponent,
+    PharmacyComponent,
+    BackdropComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +93,8 @@ import { AddressService } from './address/address.service';
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
     TranslateModule.forRoot(),
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyCFuTMgaFJhBp4gD_-CPm_zzpoiNF-y7MY'})
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyCFuTMgaFJhBp4gD_-CPm_zzpoiNF-y7MY' }),
+    ClickOutsideModule
   ],
   providers: [MedecineService,
     AuthenticationService,
@@ -87,7 +104,10 @@ import { AddressService } from './address/address.service';
     AuthGuard,
     OfflineService,
     FileUploadService,
-    AddressService],
+    AddressService,
+    LangService,
+    DialogService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -49,7 +49,6 @@ export class SignupComponent implements OnInit {
     this.showSpinner = false;
     this.errorMessage = "";
     this.isError = false;
-    this.authService.showLogin(false);
     this.reset(form);
   }
 

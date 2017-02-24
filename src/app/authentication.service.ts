@@ -11,13 +11,7 @@ import { UserService } from './user.service';
 @Injectable()
 export class AuthenticationService {
 
-  public openLogin = new EventEmitter<boolean>();
-
   constructor(private af: AngularFire, private userService: UserService) { }
-
-  showLogin(value: boolean) {
-    this.openLogin.emit(value);
-  }
 
   loginUserWithEmailAndPassword(email: string, password: string): firebase.Promise<FirebaseAuthState> {
     return this.af.auth.login({ 'email': email, 'password': password }, { provider: AuthProviders.Password, method: AuthMethods.Password });
